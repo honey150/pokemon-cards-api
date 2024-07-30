@@ -12,7 +12,7 @@ export default function SearchItemHint({
 const [hintNames, setHintNames] = useState([])
   useEffect(() => {
     setTimeout(() => {
-      let value = pokeNamesData.filter(names => names.includes(input));
+      let value = pokeNamesData.filter(names => names.startsWith(input));
       if (input === "") {
         setHintNames([]);
       }
@@ -31,7 +31,7 @@ const [hintNames, setHintNames] = useState([])
 
   return (
     <div
-      class={`${
+      className={`${
         input === "" ? "hidden" : "block"
       } search-hint w-[70%] h-[20vh] rounded-lg z-20 bg-white absolute left-1/2 -translate-x-1/2 overflow-hidden border-2 border-zinc-700`}
     >
