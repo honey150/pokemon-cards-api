@@ -7,7 +7,10 @@ export default function Cards({ data, next, page, setSearchOption }) {
         
         if (param[0].isIntersecting) {
           observer.unobserve(lastElement);
+        if(data.length > 1) {
           next();
+        }
+          
         }
       },
       { threshold: 0.2 }

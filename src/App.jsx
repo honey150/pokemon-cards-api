@@ -50,21 +50,21 @@ function App() {
     if (page === 0 || page < 0) {
       setPage(0);
     } else {
-      setPage(prev => prev - 20);
+      setPage(prev => prev - 10);
     }
   };
 
   // NEXT BUTTON HANDLE
   const handleNextBtn = () => {
-    setPage(prev => prev + 20);
+    setPage(prev => prev +
+    10);
   };
 
   // POKEMON SEARCH BY NAME
   const fetchPokemonByName = async () => {
     try {
       setData([]);
-
-      data.length > 0 ? setLoading(false) : setLoading(true);
+      setLoading(true);
 
       let url = `https://pokeapi.co/api/v2/pokemon/${pokeName}`;
       let request = await fetch(url);
@@ -87,7 +87,7 @@ function App() {
   const fetchPokemon = async () => {
     try {
       page === 0 ? setLoading(true) : setLoading(false);
-      const URL = `https://pokeapi.co/api/v2/pokemon?offset=${page}&limit=20`;
+      const URL = `https://pokeapi.co/api/v2/pokemon?offset=${page}&limit=10`;
 
       let response = await fetch(URL);
       let data = await response.json();
