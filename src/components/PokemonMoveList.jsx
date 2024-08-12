@@ -37,10 +37,10 @@ export default function PokemonMoveList({
             src="https://www.pngitem.com/pimgs/b/20-202138_pokeball-symbol-png.png"
           />
         </div>
-        <div class="pokemon--stats bg-white rounded-lg mt-28 h-[69%] relative">
+        <div className="pokemon--stats bg-white rounded-lg mt-28 h-[69%] relative">
           <div
             onClick={() => setMovesList(prev => !prev)}
-            class="close flex items-center gap-2 bg-zinc-900  pl-1 pr-2 py-0.5 rounded-full absolute top-20 right-5"
+            className="close flex items-center gap-2 bg-zinc-900  pl-1 pr-2 py-0.5 rounded-full absolute top-20 right-5"
           >
             <MdCatchingPokemon className="text-xl" style={{ fill: "white" }} />
             <span className="uppercase text-sm font-bold text-white stroke-2 stroke-blue-700 ">
@@ -48,7 +48,7 @@ export default function PokemonMoveList({
             </span>
           </div>
 
-          <div class="pokemon--type flex items-center gap-2 justify-center pt-10">
+          <div className="pokemon--type flex items-center gap-2 justify-center pt-10">
             {data.types.map((types, idx) => (
               <span
                 key={idx}
@@ -59,14 +59,14 @@ export default function PokemonMoveList({
             ))}
           </div>
 
-          <div class="about-section ">
+          <div className="about-section ">
             <h2
               className={`text-${data.types[0].type.name} text-lg font-bold mt-2 text-center`}
             >
               Moves List
             </h2>
             <div
-              class={`move-list-table mx-3  mt-4  overflow-y-auto  rounded-md p-2
+              className={`move-list-table mx-3  mt-4  overflow-y-auto  rounded-md p-2
                w-[90%] border-2 border-zinc-900 absolute left-1.5 h-[67%] `}
             >
               {data.moves.map((list, idx) => (

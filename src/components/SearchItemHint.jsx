@@ -27,7 +27,6 @@ const [hintNames, setHintNames] = useState([])
     setInput("");
   };
 
-  console.log(searchOption);
 
   return (
     <div

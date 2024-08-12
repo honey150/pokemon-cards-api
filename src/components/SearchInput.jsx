@@ -13,11 +13,10 @@ export default function SearchInput({
     setSearchOption(true);
     setMovesList(prev => !prev);
   };
-
   return (
     <div className="pokemon-search mx-auto w-full flex flex-col items-center gap-3 p-2">
       <h1 className="text-lg text-white font-bold">Who is you looking for?</h1>
-      <div class="search-input bg-white p-2 rounded-full flex justify-between">
+      <div className="search-input bg-white p-2 rounded-full flex justify-between">
         <input
           className="outline-none border-none pl-2 text-blue-600 font-bold"
           type="text"

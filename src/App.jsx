@@ -37,8 +37,6 @@ function App() {
   // Is POKEMON AVAILABLE
   const [isAvailable, setIsAvailable] = useState(true);
 
-
-
   // Pokemon movesList Logic
 
   // NAME OF ALL POKEMONS
@@ -64,7 +62,10 @@ function App() {
   // POKEMON SEARCH BY NAME
   const fetchPokemonByName = async () => {
     try {
-      setLoading(true);
+      setData([]);
+
+      data.length > 0 ? setLoading(false) : setLoading(true);
+
       let url = `https://pokeapi.co/api/v2/pokemon/${pokeName}`;
       let request = await fetch(url);
       if (!request.ok) {
@@ -85,7 +86,7 @@ function App() {
   // 20 POKEMON PER PAGE API FETCH LOGIC
   const fetchPokemon = async () => {
     try {
-      setLoading(true);
+      page === 0 ? setLoading(true) : setLoading(false);
       const URL = `https://pokeapi.co/api/v2/pokemon?offset=${page}&limit=20`;
 
       let response = await fetch(URL);
@@ -95,11 +96,18 @@ function App() {
       let result = pokeData.map(async data => {
         let request = await fetch(data.url);
         let response = await request.json();
+
         return response;
       });
       let finalResult = await Promise.all(result);
-
-      setData(finalResult);
+      // Filter out any duplicates
+      setData(prev => {
+        const existingIds = prev.map(pokemon => pokemon.id);
+        const newData = finalResult.filter(
+          pokemon => !existingIds.includes(pokemon.id)
+        );
+        return [...prev, ...newData];
+      });
 
       setLoading(false);
     } catch (err) {
@@ -122,19 +130,18 @@ function App() {
   }, [page, pokeName]);
   return (
     <div className="main w-full min-h-screen bg-gradient-to-r from-cyan-500 to-blue-500 ">
-      <div class="container pt-2 relative">
+      <div className="container pt-2 relative">
         <Heading />
 
         <SearchInput
           setSearchOption={setSearchOption}
           setPokeName={setPokeName}
-          
           input={input}
           setInput={setInput}
         />
         <SearchItemHint
           pokeNamesData={pokeNamesData}
-         input={input}
+          input={input}
           setPokeName={setPokeName}
           searchOption={searchOption}
           setSearchOption={setSearchOption}
@@ -142,7 +149,7 @@ function App() {
         />
         {loading ? (
           <div className=" w-full min-h-full  text-center my-3 ">
-            <div class="loading-content flex flex-col items-center justify-center">
+            <div className="loading-content flex flex-col items-center justify-center">
               <img
                 className="w-20 animate-spin"
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Pok%C3%A9_Ball_icon.svg/1024px-Pok%C3%A9_Ball_icon.svg.png?20161023215848"
@@ -155,14 +162,19 @@ function App() {
           </div>
         ) : (
           <>
-            <Pagination
+            {/*<Pagination
               prev={handlePrevBtn}
               next={handleNextBtn}
               setSearchOption={setSearchOption}
               setIsAvailable={setIsAvailable}
               page={page}
             />
-            {isAvailable ? <Cards data={data} page={page} /> : <PageNotFound />}
+            */}
+            {isAvailable ? (
+              <Cards data={data} page={page} next={handleNextBtn} />
+            ) : (
+              <PageNotFound />
+            )}
           </>
         )}
       </div>

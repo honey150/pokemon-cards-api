@@ -20,6 +20,8 @@ export default function CardItem({ data, page }) {
     let final = response.flavor_text_entries[10].flavor_text;
     setInfo(final);
   };
+  
+  
 
   useEffect(() => {
     const controller = new AbortController();
@@ -65,8 +67,8 @@ export default function CardItem({ data, page }) {
             src="https://www.pngitem.com/pimgs/b/20-202138_pokeball-symbol-png.png"
           />
         </div>
-        <div class="pokemon--stats h-[69%] bg-white rounded-lg mt-28">
-          <div class="pokemon--type flex items-center gap-2 justify-center pt-8">
+        <div className="pokemon--stats h-[69%] bg-white rounded-lg mt-28">
+          <div className="pokemon--type flex items-center gap-2 justify-center pt-8">
             {data.types.map((types, idx) => (
               <span
                 key={idx}
@@ -77,43 +79,43 @@ export default function CardItem({ data, page }) {
             ))}
           </div>
 
-          <div class="about-section">
+          <div className="about-section">
             <h2
               className={`text-${data.types[0].type.name} text-lg font-bold mt-2 text-center`}
             >
               About
             </h2>
-            <div class="pokemon--about grid grid-cols-3 mt-2">
-              <div class="pokemon__weight text-slate-600 font-bold  px-4 py-2 flex flex-col justify-between items-center border-r-2 border-slate-300">
+            <div className="pokemon--about grid grid-cols-3 mt-2">
+              <div className="pokemon__weight text-slate-600 font-bold  px-4 py-2 flex flex-col justify-between items-center border-r-2 border-slate-300">
                 <div className="flex items-center gap-1.5">
-                  <span class="font-extrabold text-[1.25rem]">
+                  <span className="font-extrabold text-[1.25rem]">
                     <LiaWeightHangingSolid style={{ strokeWidth: "1" }} />
                   </span>
                   <span className="text-sm">{`${parseFloat(
                     data.weight * 0.1
                   ).toFixed(1)}kg `}</span>
                 </div>
-                <p class="text-slate-400 font-bold text-xs text-center">
+                <p className="text-slate-400 font-bold text-xs text-center">
                   Weight
                 </p>
               </div>
 
-              <div class="pokemon__height text-slate-600 font-bold  px-4 py-2 flex flex-col justify-between items-center border-r-2 border-slate-300">
+              <div className="pokemon__height text-slate-600 font-bold  px-4 py-2 flex flex-col justify-between items-center border-r-2 border-slate-300">
                 <div className="flex items-center gap-1.5">
-                  <span class="text-xl">
+                  <span className="text-xl">
                     <LiaRulerVerticalSolid style={{ strokeWidth: "1" }} />
                   </span>
                   <span className="text-sm">{`${parseFloat(
                     data.height * 0.1
                   ).toFixed(1)}m`}</span>
                 </div>
-                <p class="text-slate-400 font-bold text-xs text-center">
+                <p className="text-slate-400 font-bold text-xs text-center">
                   Height
                 </p>
               </div>
 
-              <div class="pokemon__moves text-slate-600 font-bold  px-4 py-2 flex flex-col justify-center items-center gap-y-3">
-                <span class="show-list text-xs flex flex-col justify-center gap-[2px] ">
+              <div className="pokemon__moves text-slate-600 font-bold  px-4 py-2 flex flex-col justify-center items-center gap-y-3">
+                <span className="show-list text-xs flex flex-col justify-center gap-[2px] ">
                   <span
                     onClick={handleMoveList}
                     className={` relative uppercase text-${data.types[0].type.name} 
@@ -126,18 +128,18 @@ export default function CardItem({ data, page }) {
                   ></span>
                 </span>
 
-                <p class="text-slate-400 font-bold text-xs text-center">
+                <p className="text-slate-400 font-bold text-xs text-center">
                   Moves
                 </p>
               </div>
             </div>
 
-            <div class="pokemon-description mx-3  mt-4">
+            <div className="pokemon-description mx-3  mt-4">
               <p className=" text-xs h-[40%] leading-4 font-bold text-slate-500">
                 {info}
               </p>
             </div>
-            <div class="base--stats">
+            <div className="base--stats">
               <h2
                 className={`text-${data.types[0].type.name} text-lg font-bold mt-2 text-center`}
               >
@@ -146,7 +148,7 @@ export default function CardItem({ data, page }) {
 
               <div className="pokemon__base__stats text-sm font-bold flex justify-between items-evenly gap-3 mt-3 pb-4">
                 <div
-                  class={`stats__title text-right flex flex-col text-${data.types[0].type.name} border-r-2 border-slate-300 px-2`}
+                  className={`stats__title text-right flex flex-col text-${data.types[0].type.name} border-r-2 border-slate-300 px-2`}
                 >
                   <span>HP</span>
                   <span>ATK</span>
@@ -156,12 +158,12 @@ export default function CardItem({ data, page }) {
                   <span>SPD</span>
                 </div>
 
-                <div class="stats__value flex flex-col justify-between text-slate-500">
+                <div className="stats__value flex flex-col justify-between text-slate-500">
                   {data.stats.map((stat, idx) => (
                     <span key={idx}>{stat.base_stat}</span>
                   ))}
                 </div>
-                <div class="stats__graph flex flex-col justify-around w-[100%] pr-2 ">
+                <div className="stats__graph flex flex-col justify-around w-[100%] pr-2 ">
                   {data.stats.map((stat, idx) => (
                     <span
                       key={idx}
