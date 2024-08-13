@@ -171,7 +171,7 @@ function App() {
             />
             */}
             {isAvailable ? (
-              <Cards data={data} page={page} next={handleNextBtn} />
+              <Cards data={data} page={page} setPage={setPage} />
             ) : (
               <PageNotFound />
             )}
